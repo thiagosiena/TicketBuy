@@ -16,14 +16,22 @@ public class CancelTicketScreen {
         parent.setVisible(false); // Hides the mainInterface window
 
           JComboBox<Ticket> boxSelectorTicket = new JComboBox<>();
+
+                 //Main section
                 JDialog dialog = new JDialog();
-                dialog.setSize(600, 200);
-                dialog.setLayout(new GridLayout(3, 0));
+                dialog.setSize(900, 300);
+                dialog.setLayout(new GridLayout(3, 0, 0, 30));
+
+                // Field to select a ticket
                 for (Ticket ticket : tickets) {
                     boxSelectorTicket.addItem(ticket);
+                    boxSelectorTicket.setFont(new Font("Arial", Font.PLAIN, 15));
                 }
                 dialog.add(boxSelectorTicket);
+
+                // Delete button
                 JButton deleteTicketButton = new JButton("Delete Ticket");
+                deleteTicketButton.setFont(new Font("Arial", Font.PLAIN, 32));
                 deleteTicketButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -40,7 +48,9 @@ public class CancelTicketScreen {
                 });
                 dialog.add(deleteTicketButton);
 
+                // CancelButton
                 JButton cancelButton = new JButton("Cancel");
+                cancelButton.setFont(new Font("Arial", Font.PLAIN, 32));
                 cancelButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {

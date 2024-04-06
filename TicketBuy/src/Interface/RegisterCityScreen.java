@@ -74,8 +74,10 @@ public class RegisterCityScreen {
                 String id = idField.getText();
                 String state = stateField.getText();
 
+                // Verify if the ID and name are not null
+
                 if (name.equals("") || id.equals("")) {
-                    JOptionPane.showMessageDialog(null, "Cpf and Name can not be null", "Error",
+                    JOptionPane.showMessageDialog(null, "ID and Name can not be null", "Error",
                             JOptionPane.ERROR_MESSAGE);
                     return;
                 }

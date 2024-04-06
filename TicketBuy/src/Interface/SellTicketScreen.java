@@ -115,12 +115,23 @@ public class SellTicketScreen {
         String travelDate = dateTextField.getText();
 
         // Verify if the destiny is the same
+
         if (origin.equals(destination)) {
           JOptionPane.showMessageDialog(dialog, "Origin and destination cannot be the same.", "Error",
               JOptionPane.ERROR_MESSAGE);
           return;
         }
+
+        // Verify if the Seat and Travel Date are not null
+
+        if (seat.equals("") || travelDate.equals("")) {
+          JOptionPane.showMessageDialog(null, "Seat and Travel Date can not be null", "Error",
+                  JOptionPane.ERROR_MESSAGE);
+          return;
+      }
+
         // Verify if the sold tickets are bellow 40 tickets
+
         int soldTicketsCount = 0;
         for (Ticket ticket : tickets) {
           if (ticket.getDestination().equals(destination) && ticket.getOrigin().equals(origin)) {

@@ -81,8 +81,8 @@ public class Ticket {
   
     @Override
     public String toString() {
-        return "Id " + Ticket_id + " From " + origin + " To " + destination
-                + " Date " + travel_date + " Seat " + seat + " Costumer " + passenger + "]";
+        return "ID:" + Ticket_id + " From:" + origin + " To:" + destination
+                + " Date:" + travel_date + " Seat:" + seat + " Costumer:" + passenger;
     }
 
 }

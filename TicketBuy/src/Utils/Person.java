@@ -48,7 +48,7 @@ public class Person {
     
     @Override
     public String toString() {
-        return  "Name[" + name + "]" + " Cpf[" + cpf + "]";
+        return  "Name: " + name + " Cpf: " + cpf ;
     }
     
 
