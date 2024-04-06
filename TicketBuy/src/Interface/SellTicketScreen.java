@@ -4,25 +4,32 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import Utils.City;
 import Utils.Passenger;
 import Utils.Ticket;
+
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SellTicketScreen {
-  
-  public static void showSellTicketDialog(ArrayList<Passenger> passengers, ArrayList<City> cities,
+
+  public static void showSellTicketDialog(JFrame parent, ArrayList<Passenger> passengers, ArrayList<City> cities,
       ArrayList<Ticket> tickets) {
+
+    parent.setVisible(false); // Hides the mainInterface window
+
+    // Main Dialog
 
     JDialog dialog = new JDialog();
     dialog.setTitle("Sell Ticket");
-    dialog.setSize(400, 300);
-    dialog.setLayout(new GridLayout(7, 2));
+    dialog.setSize(600, 300);
+    dialog.setLayout(new GridLayout(6, 2, 0, 10));
     JComboBox<City> boxSelectorOrigin = new JComboBox<>();
     JComboBox<City> boxSelectorDestination = new JComboBox<>();
     JComboBox<Passenger> boxSelectorPassenger = new JComboBox<>();
@@ -33,32 +40,69 @@ public class SellTicketScreen {
       boxSelectorOrigin.addItem(city);
       boxSelectorDestination.addItem(city);
     }
+
     // Fields to select a city
-    dialog.add(new JLabel("City of Origin:"));
+
+    JLabel cityOLabel = new JLabel("City of Origin:");
+    cityOLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+    dialog.add(cityOLabel);
     dialog.add(boxSelectorOrigin);
-    dialog.add(new JLabel("City of Destination:"));
+    JLabel cityDLabel = new JLabel("Destination: ");
+    cityDLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+    dialog.add((cityDLabel));
     dialog.add(boxSelectorDestination);
+    cityOLabel.setHorizontalAlignment(JLabel.CENTER);
+    cityDLabel.setHorizontalAlignment(JLabel.CENTER);
 
     // Field to select a date
-    dialog.add(new JLabel("Travel Date:"));
+
+    JLabel dateLabel = new JLabel("Travel Date:");
+    dateLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+    dialog.add(dateLabel);
     JTextField dateTextField = new JTextField(10);
     dialog.add(dateTextField);
+    dateLabel.setHorizontalAlignment(JLabel.CENTER);
+
 
     // Field to select a seat
-    dialog.add(new JLabel("Seat:"));
+
+    JLabel seatLabel = new JLabel("Seat:");
+    seatLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+    dialog.add(seatLabel);
     JTextField seatTextField = new JTextField(10);
     dialog.add(seatTextField);
+    seatLabel.setHorizontalAlignment(JLabel.CENTER);
 
     // Fill the fields with the avaliable costumers
+
     for (Passenger passenger : passengers) {
       boxSelectorPassenger.addItem(passenger);
     }
+
     // Field to select a costumer
-    dialog.add(new JLabel("Costumer:"));
+    JLabel passengerLabel = new JLabel("Costumer:");
+    passengerLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+    dialog.add(passengerLabel);
     dialog.add(boxSelectorPassenger);
+    passengerLabel.setHorizontalAlignment(JLabel.CENTER);
+
+
+    // Cancel Button
+
+    JButton cancelButton = new JButton("Cancel");
+    cancelButton.setFont(new Font("Arial", Font.PLAIN, 32));
+    cancelButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        parent.setVisible(true);
+        dialog.dispose();
+      }
+    });
+    dialog.add(cancelButton);
 
     // Sell Button
     JButton sellButton = new JButton("Sell Ticket");
+    sellButton.setFont(new Font("Arial", Font.PLAIN, 32));
     dialog.add(sellButton);
 
     sellButton.addActionListener(new ActionListener() {
@@ -102,25 +146,16 @@ public class SellTicketScreen {
         }
 
         // if its everything fine adds a new ticket to the array
-
-        tickets.add(new Ticket(origin, destination, travelDate, seat, passenger));
+        
+        tickets.add( new Ticket(origin, destination, travelDate, seat, passenger) );
+        parent.setVisible(true);
+        dialog.dispose();
         JOptionPane.showMessageDialog(dialog, "Ticket successfully sold.", "Success", JOptionPane.INFORMATION_MESSAGE);
-        dialog.dispose();
+
       }
     });
 
-    // Cancel Button
-
-    JButton cancelButton = new JButton("Cancel");
-    cancelButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        dialog.dispose();
-      }
-    });
-    dialog.add(cancelButton);
-
-    dialog.setLocationRelativeTo(null);
+    dialog.setLocationRelativeTo(parent);
     dialog.setVisible(true);
   }
 }

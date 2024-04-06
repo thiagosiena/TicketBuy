@@ -40,6 +40,7 @@ public class City {
     public void setState(String state) {
         this.state = state;
     }
+      // To String 
     @Override
     public String toString() {
         return name + "/" + state;
