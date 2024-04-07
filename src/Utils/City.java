@@ -9,6 +9,9 @@ public class City {
     //constructors
 
     public City(){
+        this.name = "";
+        this.id = "";
+        this.state = "";
         
     }
     public City(String name, String id, String state) {
@@ -40,7 +43,9 @@ public class City {
     public void setState(String state) {
         this.state = state;
     }
-      // To String 
+
+    // To String 
+
     @Override
     public String toString() {
         return name + "/" + state;

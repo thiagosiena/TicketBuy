@@ -13,6 +13,17 @@ public class Ticket {
 
     // Constructors
 
+    public Ticket(){
+        
+        this.Ticket_id = 0;
+        this.origin = null;
+        this.destination = null;
+        this.travel_date = null;
+        this.seat = "";
+        this.passenger = null;
+
+    }
+
     public Ticket(City origin, City destination, String travel_date, String seat, Passenger passenger) {
         Random temp = new Random();
         this.Ticket_id = temp.nextInt(9000);

@@ -43,17 +43,15 @@ public class AboutScreen extends JDialog {
 
         add(infoPanel, BorderLayout.CENTER);
 
-        // Botão para fechar a janela
-        JButton closeButton = new JButton("Fechar");
+        // Close button
+        JButton closeButton = new JButton("Close");
         closeButton.setFont(new Font("Arial", Font.PLAIN, 20));
         closeButton.addActionListener(e -> dispose());
         add(closeButton, BorderLayout.SOUTH);
 
-        // Centralizar na tela
         setLocationRelativeTo(null);
     }
 
-    // Método estático para exibir a tela Sobre
     public static void showAboutDialog(Frame parent) {
         AboutScreen aboutScreen = new AboutScreen(parent);
         aboutScreen.setVisible(true);

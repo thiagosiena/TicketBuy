@@ -7,12 +7,16 @@ public class Passenger extends Person {
     
     //Constructor
 
+    public Passenger(){
+        super();
+    }
+
     public Passenger(String name, String cpf, String email){
         super(name, cpf, email);
     }
 
 
-    //Method to push a ticket to the ticketsList - Not used
+    //Method to push a ticket to the passenger ticketsList - Not used
 
     public void pushTicket(Ticket ticket){
         tickets.add(ticket);
